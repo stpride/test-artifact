@@ -20,7 +20,7 @@ permissions:
   deployments: write
 
 jobs:
-  Test:
+  Test-Init:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -47,3 +47,33 @@ jobs:
         with:
           name: my-artifact
           path: terraform/artifact.tgz
+
+  Test-Plan:
+    needs: [Test-Init]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY_ID }}
+          aws-region: us-west-2
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.2.3
+          terraform_wrapper: false
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+          path: ./terraform
+      - name: Plan
+        working-directory: terraform
+        shell: bash
+        run: |
+          ls -l
+          tar zxvf artifact.tgz
+          terraform plan
