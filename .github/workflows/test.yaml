@@ -41,9 +41,9 @@ jobs:
         shell: bash
         run: |
           terraform init
-          ls -la
-      #- name: Upload Artifact
-      #  uses: actions/upload-artifact@v3
-      #  with:
-      #    name: my-artifact
-      #    path: path/to/artifact/
+          tar zcvf artifact.tgz .terraform*
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: terraform/artifact.tgz
