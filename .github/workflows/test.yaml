@@ -77,5 +77,4 @@ jobs:
         run: |
           tar zxvf artifact.tgz
           terraform plan
-          name: my-artifact
         
