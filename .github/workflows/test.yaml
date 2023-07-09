@@ -47,6 +47,7 @@ jobs:
         with:
           name: my-artifact
           path: terraform/artifact.tgz
+          retention-days: 1
 
   Test-Plan:
     needs: [Test-Init]
@@ -74,6 +75,7 @@ jobs:
         working-directory: terraform
         shell: bash
         run: |
-          ls -l
           tar zxvf artifact.tgz
           terraform plan
+          name: my-artifact
+        
