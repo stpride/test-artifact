@@ -15,8 +15,9 @@ data "aws_iam_policy_document" "invoke_functions" {
   }
 }
 
-resource "aws_iam_policy" "example" {
-  name   = "example_policy"
+resource "aws_iam_policy" "invoke_functions" {
+  count = length(var.invoke_functions) > 0 ? 1 : 0
+  name   = "invoke-functions"
   path   = "/"
   policy = data.aws_iam_policy_document.invoke_functions.json
 }
