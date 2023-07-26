@@ -36,8 +36,6 @@ data "aws_iam_policy_document" "invoke_functions" {
       "lambda:InvokeFunctions"
     ]
     effect = "Allow"
-    resources = {
-      flatten([for v in var.invoke_functions : "arn:aws:lambda:us-west-2:123456::function:${v}"])
-    }
+    resources = flatten([for v in var.invoke_functions : "arn:aws:lambda:us-west-2:123456::function:${v}"])
   }
 }
