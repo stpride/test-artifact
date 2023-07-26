@@ -21,7 +21,7 @@ resource aws_iam_policy lambda {
         "Action": [
           "lambda:InvokeFunctions"
         ],
-        "Resource": flatten([for v in var.invoke_lambdas : "arn:aws:lambda:us-west-2:123456::function:${v}"])
+        "Resource": [flatten([for v in var.invoke_functions : "arn:aws:lambda:us-west-2:123456::function:${v}"])]
       }
     ]
   }
