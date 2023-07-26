@@ -21,7 +21,7 @@ resource aws_iam_policy lambda {
         "Action": [
           "lambda:InvokeFunctions"
         ],
-        "Resource": ["arn:aws:lambda:us-west-2:123456::function:abc"]
+        "Resource": [local.lambdas]
       }
     ]
   }
