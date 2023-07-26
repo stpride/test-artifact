@@ -31,5 +31,6 @@ jobs:
         shell: bash
         run: |
           terraform init
-          terraform plan -var 'invoke_functions=["aaa","bbb"]'
+          terraform plan
+          #terraform plan -var 'invoke_functions=["aaa","bbb"]'
         
