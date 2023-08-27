@@ -10,9 +10,17 @@ provider "aws" {
   region = "us-west-2"
 }
 
+variable subs {
+  type = list(object({
+    p = string
+    v = string
+  })
+}
+
 resource "aws_ssm_parameter" "secret" {
-  name        = "/temp/data"
+  for_each = { for s in subs: subs.path => s }
+  name        = each.value.p
   description = "The parameter description"
   type        = "SecureString"
-  value       = "supersecret"
+  value       = each.value.v
 }
