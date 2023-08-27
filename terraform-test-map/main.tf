@@ -12,9 +12,9 @@ provider "aws" {
 
 variable subs {
   type = list(object({
-    p = string,
+    p = string
     v = string
-  })
+  }))
   default = []
 }
 
