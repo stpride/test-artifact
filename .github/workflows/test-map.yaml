@@ -34,5 +34,4 @@ jobs:
         shell: bash
         run: |
           terraform init
-          terraform plan
-          #terraform plan -var 'invoke_functions=["aaa","bbb"]'
+          terraform plan -var 'subs=[{p="/alt/path",v="mystuff"}]'
