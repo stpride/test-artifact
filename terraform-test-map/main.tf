@@ -11,7 +11,7 @@ provider "aws" {
 }
 
 module test {
-  source = "https://github.com/stpride/module-aws-test1@main"
+  source = "github.com/stpride/module-aws-test1"
   subs = [
     {
       p = "/alt/test"
