@@ -19,7 +19,7 @@ variable subs {
 }
 
 resource "aws_ssm_parameter" "secret" {
-  for_each    = { for s in subs: s.path => s }
+  for_each    = { for s in var.subs: s.path => s }
   name        = each.value.p
   description = "The parameter description"
   type        = "SecureString"
