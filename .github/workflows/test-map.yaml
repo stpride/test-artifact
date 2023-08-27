@@ -10,7 +10,7 @@ permissions:
   deployments: write
 
 jobs:
-  Test-Blob:
+  Test-Map:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
